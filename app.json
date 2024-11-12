@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "wireframe",
-    "slug": "wireframe",
+    "name": "ClassFinder",
+    "slug": "ClassFinder",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
