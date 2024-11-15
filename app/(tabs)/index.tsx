@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
   },
   
   languagePickerWrapper: {
-    width: 200,
+    width: width*0.4,
     height: 50,
     backgroundColor: "#fff", // Fondo blanco o personalizable
     borderRadius: 25, 
@@ -353,6 +353,7 @@ const styles = StyleSheet.create({
     width: "100%", 
     color: "#333", 
     backgroundColor: "transparent", 
+    fontSize: FONT_SIZE
   },
   
   languageIcon: {

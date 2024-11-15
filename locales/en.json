@@ -10,7 +10,7 @@
     "name_classroom": "Enter your destination",
     "building": "Building",
     "floor": "Floor",
-    "number": "Number",
+    "number": "Reference",
 
     "next_img": "Next",
     "back_img": "Previous",

@@ -10,6 +10,11 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const { width, height } = Dimensions.get('window');
 
+const ICON_SIZE = Math.min(width * 0.1, 50);
+const FONT_SIZE = Math.min(width * 0.05, 30);
+const FONT_BACK_SIZE = Math.min(width * 0.05, 20);
+const FONT_TITLE = Math.min(width * 0.05, 50);
+
 export default function displayMap() {
   const { id } = useGlobalSearchParams<{ id: string }>();
   
@@ -131,7 +136,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   backText: {
-    fontSize: 16,
+    fontSize: FONT_BACK_SIZE,
     color: '#CE0615',
     marginLeft: 5,
   },
@@ -161,7 +166,7 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
-    marginTop: 20,
+    marginTop:5,
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%', // Asegura que el contenedor de la imagen ocupe todo el ancho
@@ -186,6 +191,6 @@ const styles = StyleSheet.create({
   },
   navButtonText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: FONT_SIZE,
   },
 });
