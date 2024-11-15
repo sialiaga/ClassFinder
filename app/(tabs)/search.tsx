@@ -13,6 +13,7 @@ import { capitalize } from "@/utils/capitalize";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 import { styleTitleLayout } from '@/utils/styleTitleLayout';
+import AsyncStorage, { useAsyncStorage } from "@react-native-async-storage/async-storage";
 
 const itemsToString = (items: Classroom[]): string => {
   return items.filter((item) => item.show === true).map(item => `${item.id}`).join('. ');
@@ -34,38 +35,87 @@ export default function SearchScreen() {
 
   const { translations } = useLanguage();
 
+  const [favorites, setFavorites] = useState<string[]>([]);
+
+  const [showingFavorites, setShowingFavorites] = useState(false);
+
   useEffect(() => {
-    const filterSingleCharacter = (char: string) => {
-      return Object.values(classrooms).filter((classroom) =>
+    const loadFavorites = async () => {
+      try {
+        const storedFavorites = await AsyncStorage.getItem("favorites");
+        if (storedFavorites) {
+          setFavorites(JSON.parse(storedFavorites));
+        }
+      } catch (error) {
+        console.error("Error loading favorites: ", error);
+      }
+    };
+    loadFavorites();
+  }, []);
+
+  useEffect(() => {
+    const saveFavorites = async () => {
+      try {
+        await AsyncStorage.setItem("favorites", JSON.stringify(favorites));
+      } catch (error) {
+        console.error("Error saving favorites: ", error);
+      }
+    };
+    saveFavorites();
+  }, [favorites]);
+
+  const toggleFavoritesFilter = () => {
+    setShowingFavorites((prev) => !prev);
+    setFilteredItems((prev) =>
+      !showingFavorites
+        ? Object.values(classrooms).filter((item) => isFavorite(item.id))
+        : Object.values(classrooms)
+    );
+  };
+
+
+  const isFavorite = (id: string) => favorites.includes(id);
+
+
+  useEffect(() => {
+    const filterSingleCharacter = (char: string, itemsToFilter: Classroom[]) => {
+      return itemsToFilter.filter((classroom) =>
         classroom.build.toLowerCase().startsWith(char.toLowerCase())
       );
     };
   
-    const filterMultipleCharacters = (text: string) => {
+    const filterMultipleCharacters = (text: string, itemsToFilter: Classroom[]) => {
       const options = {
-        keys: [
-          "id",
-          "build",
-          "floor",
-          "number",
-        ],
+        keys: ["id", "build", "floor", "number"],
         includeScore: true,
-        threshold: 0.1
+        threshold: 0.1,
       };
   
-      const fuse = new Fuse(Object.values(classrooms), options);
+      const fuse = new Fuse(itemsToFilter, options); // Se filtra solo el subconjunto (favoritos o todos)
       const result = fuse.search(text);
       return result.map(({ item }) => item);
     };
   
-    if (searchText.trim() === "") {
-      setFilteredItems(Object.values(classrooms));
-    } else if (searchText.trim().length === 1) {
-      setFilteredItems(filterSingleCharacter(searchText.trim()));
-    } else {
-      setFilteredItems(filterMultipleCharacters(searchText.trim()));
-    }
-  }, [searchText, classrooms]); // Dependencias
+    const applyFilters = () => {
+      const allItems = Object.values(classrooms);
+  
+      // Si el filtro de favoritos está activo, filtrar primero los favoritos
+      const itemsToFilter = showingFavorites
+        ? allItems.filter((item) => favorites.includes(item.id))
+        : allItems;
+  
+      // Aplicar lógica de búsqueda con Fuse
+      if (searchText.trim() === "") {
+        setFilteredItems(itemsToFilter);
+      } else if (searchText.trim().length === 1) {
+        setFilteredItems(filterSingleCharacter(searchText.trim(), itemsToFilter));
+      } else {
+        setFilteredItems(filterMultipleCharacters(searchText.trim(), itemsToFilter));
+      }
+    };
+  
+    applyFilters();
+  }, [searchText, classrooms, favorites, showingFavorites]);
 
   useEffect(() => {
     if (query !== undefined) {
@@ -73,11 +123,25 @@ export default function SearchScreen() {
     }
   }, [query]);
 
+
+
   const getItemWidth = () => {
     const padding = 20; // Total horizontal padding
     const gap = 20; // Gap between items
     return (width - padding - gap) / 2; // Divide available width by 2 for two columns
   };
+
+  function toggleFavorite(id: string): void {
+    setFavorites((prevFavorites) => {
+      if (prevFavorites.includes(id)) {
+        // Si ya está en favoritos, lo elimina
+        return prevFavorites.filter((fav) => fav !== id);
+      } else {
+        // Si no está en favoritos, lo agrega
+        return [...prevFavorites, id];
+      }
+    });
+  }
 
   return (
     <View style={styles.container}>
@@ -92,6 +156,12 @@ export default function SearchScreen() {
           </Link>
         </Pressable>
       </View>
+
+      <Pressable style={styles.filterButton} onPress={toggleFavoritesFilter}>
+        <Text style={styles.filterText}>
+          {showingFavorites ? "Mostrar Todos" : "Mostrar Favoritos"}
+        </Text>
+      </Pressable>
 
       <View style={styles.instructionContainer}>
         <Icon name="chevron-right" size={FONT_SIZE} color="#CE0615" style={styles.icon} />
@@ -149,6 +219,19 @@ export default function SearchScreen() {
                 </View>
               </View>
             </Link>
+            <Pressable
+              style={[
+                styles.favoriteButton,
+                isFavorite(item.id) && styles.favoriteButtonActive,
+              ]}
+              onPress={() => toggleFavorite(item.id)}
+            >
+              <Icon
+                name={isFavorite(item.id) ? "heart" : "heart"}
+                size={ICON_SIZE * 0.8}
+                color={isFavorite(item.id) ? "#CE0615" : "#888"}
+              />
+            </Pressable>
           </Pressable>
         )}
         ListEmptyComponent={
@@ -161,6 +244,29 @@ export default function SearchScreen() {
 }
 
 const styles = StyleSheet.create({
+  favoriteButton: {
+    position: "absolute",
+    top: 10,
+    right: 10,
+    backgroundColor: "#FFF",
+    borderRadius: 20,
+    padding: 5,
+  },
+  favoriteButtonActive: {
+    backgroundColor: "#FFDADA", // Fondo rojo claro cuando está activo
+  },
+  filterButton: {
+    marginTop: 10,
+    padding: 10,
+    backgroundColor: "#CE0615",
+    borderRadius: 5,
+    alignItems: "center",
+  },
+  filterText: {
+    color: "#FFF",
+    fontWeight: "bold",
+    fontSize: FONT_SIZE,
+  },
   emptyText: {
     textAlign: "center",
     fontSize: 16,
