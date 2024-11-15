@@ -1,3 +1,12 @@
+export const ClassroomTypes = {
+    WC: "wc",
+    CLASS: "class",
+    OTHER: "other",
+    CAFE: "cafe",
+} as const; // 'as const' asegura que los valores sean literales.
+
+export type ClassroomType = typeof ClassroomTypes[keyof typeof ClassroomTypes];
+
 type ResourceType = {
     type: string;       // Tipo de recurso (normal, alternativa, etc.)
     resources: any[]; // Array de recursos asociados a este tipo
@@ -11,6 +20,7 @@ export type Classroom = {
     show: boolean;
     title?: Lenguage;
     resources: ResourceType[]; // Array de tipos de recursos
+    type: ClassroomType;
 };
 
 export type Lenguage = {

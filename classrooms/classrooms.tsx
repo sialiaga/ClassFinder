@@ -1,30 +1,12 @@
 import { Classrooms } from "./typesClassrooms";
 import { ciencias } from "./builds/ciencias";
 import { ingenieria } from "./builds/ingenieria";
-
-const images = {
-    general: {
-        campus: require('../assets/images/general/mapa_campus.png')
-    }
-}
+import { humanidades } from "./builds/humanidades";
+import { misc } from "./builds/misc"
 
 export const classrooms: Classrooms = {
     ...ciencias,
     ...ingenieria,
-    campus: { 
-        id: "campus", 
-        build: "general",
-        title: {"es":"Mapa del Campus", "en":"Map Of Campus"}, 
-        floor: "0", 
-        number: "00",
-        show: false, 
-        resources: [
-            {
-                type: "normal", 
-                resources: [
-                    images.general.campus
-                ]
-            }
-        ]
-    },
+    ...humanidades,
+    ...misc
 }

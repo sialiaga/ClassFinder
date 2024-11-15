@@ -1,13 +1,13 @@
-import { Classrooms } from "../typesClassrooms";
+import { Classrooms, ClassroomTypes } from "../typesClassrooms";
 
 const images = {
     misc: {
-        elevator: require('../../assets/images/ingenieria/misc/misc_elevator.png'),
-        totwo: require('../../assets/images/ingenieria/misc/misc_totwo.png')
+        elevator: require('../../assets/images/ingenieria/misc/elevator.png'),
+        totwo: require('../../assets/images/ingenieria/misc/totwo.png')
     },
     I204: {
-        alt1: require('../../assets/images/ingenieria/I204/I204_alt1.png'),
-        normal1: require('../../assets/images/ingenieria/I204/I204_normal1.png')
+        alt1: require('../../assets/images/ingenieria/I204/alt1.png'),
+        normal1: require('../../assets/images/ingenieria/I204/normal1.png')
     }
 }
 
@@ -18,6 +18,7 @@ export const ingenieria: Classrooms = {
         floor: "2", 
         number: "04", 
         show: true,
+        type: ClassroomTypes.CLASS,
         resources: [
             { 
                 type: "Normal", 

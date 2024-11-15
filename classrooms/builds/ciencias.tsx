@@ -1,8 +1,8 @@
-import { Classrooms } from "../typesClassrooms";
+import { Classrooms, ClassroomTypes } from "../typesClassrooms";
 
 const images = {
     C105: {
-        normal1: require('../../assets/images/ciencias/C105/C105_normal1.gif')
+        normal1: require('../../assets/images/ciencias/C105/normal1.gif')
     }
 }
 
@@ -13,6 +13,7 @@ export const ciencias: Classrooms = {
         floor: "1", 
         number: "05",
         show: true, 
+        type: ClassroomTypes.CLASS,
         resources: [
             {
                 type: "Normal", 

@@ -3,14 +3,17 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList, useWindowDimensions, Pressable } from "react-native";
 import { useGlobalSearchParams, Link } from "expo-router";
 import Fuse from "fuse.js";
-import Icon from "react-native-vector-icons/FontAwesome"; // Importamos el ícono de FontAwesome
+import Icon from "react-native-vector-icons/FontAwesome";
+import { FontAwesome } from '@expo/vector-icons';
 
 import { speakText } from "../../utils/TextToSpeech";
 import { playSound } from "../../utils/playSound";
 import { classrooms } from "@/classrooms/classrooms";
-import { Classroom } from "@/classrooms/typesClassrooms";
+import { Classroom, ClassroomTypes } from "@/classrooms/typesClassrooms";
 import { capitalize } from "@/utils/capitalize";
 import { useLanguage } from "@/contexts/LanguageContext";
+
+import { styleTitleLayout } from '@/utils/styleTitleLayout';
 
 const itemsToString = (items: Classroom[]): string => {
   return items.filter((item) => item.show === true).map(item => `${item.id}`).join('. ');
@@ -28,10 +31,10 @@ export default function SearchScreen() {
   useEffect(() => {
     const options = {
       keys: ["id"],
-      includeScore: true,
+      includeScore: true
     };
 
-    const fuse = new Fuse(Object.values(classrooms), options); // Crear fuse aquí
+    const fuse = new Fuse(Object.values(classrooms), options);
 
     if (searchText.trim() === "") {
       setFilteredItems(Object.values(classrooms));
@@ -55,7 +58,7 @@ export default function SearchScreen() {
 
   return (
     <View style={styles.container}>
-      
+
       <View style={styles.backButtonContainer}>
         <Pressable onPress={() => playSound(require('@/assets/sounds/back.mp3'))}>
           <Link href="/" asChild>
@@ -66,15 +69,15 @@ export default function SearchScreen() {
           </Link>
         </Pressable>
       </View>
-      
+
       <View style={styles.instructionContainer}>
         <Icon name="chevron-right" size={20} color="#CE0615" style={styles.icon} />
         <Text style={styles.instructionText}>{translations['name_classroom']} 🚪</Text>
-        <a 
+        <a
           onClick={() => speakText(`${"Introduce nombre de sala."} ${itemsToString(filteredItems)}`)}
           style={styles.iconContainer}
         >
-          <Icon name="volume-up" size={40} color="#000000"/>
+          <Icon name="volume-up" size={40} color="#000000" />
         </a>
       </View>
 
@@ -82,7 +85,7 @@ export default function SearchScreen() {
         <SearchBar
           searchText={searchText}
           setSearchText={setSearchText}
-          onSubmit={() => {}}
+          onSubmit={() => { }}
         />
       </View>
 
@@ -95,10 +98,26 @@ export default function SearchScreen() {
         contentContainerStyle={styles.listContent}
         renderItem={({ item }) => (
           <Pressable onPress={() => playSound(require('@/assets/sounds/click.mp3'))}>
-            <Link href={{ pathname: `/display_map`, params: { id: item.id } }} style={styles.link} >
+            <Link href={{ pathname: `/display_map`, params: { id: item.id } }} style={styles.link}>
               <View style={[styles.buttonContainer, { width: getItemWidth() }]}>
                 <View style={styles.titleContainer}>
-                  <Text style={styles.title}>{`${item.build[0].toUpperCase()}-${item.floor}${item.number}`}</Text>
+                  <Icon
+                    name={
+                      item.type === ClassroomTypes.WC
+                        ? "bath"
+                        : item.type === ClassroomTypes.CLASS
+                          ? "book"
+                          : item.type === ClassroomTypes.OTHER
+                            ? "question-circle"
+                            : item.type === ClassroomTypes.CAFE
+                              ? "coffee"
+                              : "question-circle" // Ícono predeterminado
+                    }
+                    size={20} // Ajusta el tamaño según sea necesario
+                    color="#FFFFFF"
+                    style={{ marginLeft: 8 }} // Espaciado entre texto e ícono
+                  />
+                  <Text style={styles.title}>{`${styleTitleLayout(item.id)}`}</Text>
                 </View>
                 <View style={styles.infoContainer}>
                   <Text style={styles.infoText}>{translations['building']}: {capitalize(item.build)}</Text>
@@ -113,87 +132,88 @@ export default function SearchScreen() {
           <Text style={styles.emptyText}>No se encontraron salas.</Text>
         }
       />
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-    emptyText: {
-        textAlign: "center",
-        fontSize: 16,
-        color: "#888",
-      },
-    backButtonContainer: {
-      flexDirection: 'row',
-      marginBottom: 20,
-      marginTop: 10,
-    },
-    backButtonContent: {
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    backText: {
-      fontSize: 16,
-      color: '#CE0615',
-      marginLeft: 5, // Ajusta el espacio entre el icono y el texto
-    },
-    container: {
-      flex: 1,
-      padding: 10,
-    },
-    instructionContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center', // Centrar horizontalmente
-      marginBottom: 10,
-    },
-    row: {
-      justifyContent: 'space-between',
-    },
-    buttonContainer: {
-      flexDirection: 'column',
-      alignItems: 'stretch',
-      marginBottom: 20,
-    },
-    titleContainer: {
-      backgroundColor: '#8B0000',
-      padding: 10,
-      alignItems: 'center',
-      borderTopLeftRadius: 10,
-      borderTopRightRadius: 10,
-    },
-    title: {
-      fontSize: 22,
-      fontWeight: 'bold',
-      color: '#fff',
-    },
-    infoContainer: {
-      backgroundColor: '#f4f4f4',
-      padding: 15,
-      alignItems: 'flex-start',
-      borderBottomLeftRadius: 10,
-      borderBottomRightRadius: 10,
-    },
-    infoText: {
-      fontSize: 16,
-      color: '#000',
-    },
-    link: {
-      flex: 1,
-    },
-    instructionText: {
-      fontSize: 18,
-      fontWeight: 'bold',
-      marginLeft: 10, // Espaciado entre el ícono y el texto
-    },
-    listContent: {
-      flexGrow: 1,
-    },
-    icon: {
-      marginRight: 10, // Separar el ícono del texto
-    },
-    iconContainer: {
-      alignSelf: 'flex-end',
-      marginLeft: 'auto', // Moves it to the far right within the flex container
-    },
-  });
+  emptyText: {
+    textAlign: "center",
+    fontSize: 16,
+    color: "#888",
+  },
+  backButtonContainer: {
+    flexDirection: 'row',
+    marginBottom: 20,
+    marginTop: 10,
+  },
+  backButtonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  backText: {
+    fontSize: 16,
+    color: '#CE0615',
+    marginLeft: 5, // Ajusta el espacio entre el icono y el texto
+  },
+  container: {
+    flex: 1,
+    padding: 10,
+  },
+  instructionContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center', // Centrar horizontalmente
+    marginBottom: 10,
+  },
+  row: {
+    justifyContent: 'space-between',
+  },
+  buttonContainer: {
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    marginBottom: 20,
+  },
+  titleContainer: {
+    backgroundColor: '#8B0000',
+    padding: 10,
+    alignItems: 'center',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  infoContainer: {
+    backgroundColor: '#f4f4f4',
+    padding: 15,
+    alignItems: 'flex-start',
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+  },
+  infoText: {
+    fontSize: 16,
+    color: '#000',
+  },
+  link: {
+    flex: 1,
+  },
+  instructionText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginLeft: 10, // Espaciado entre el ícono y el texto
+  },
+  listContent: {
+    flexGrow: 1,
+  },
+  icon: {
+    marginRight: 10, // Separar el ícono del texto
+  },
+  iconContainer: {
+    alignSelf: 'flex-end',
+    marginLeft: 'auto', // Moves it to the far right within the flex container
+  },
+});
