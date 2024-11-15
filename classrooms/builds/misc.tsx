@@ -21,6 +21,36 @@ export const misc: Classrooms = {
                 resources: [
                     images.general.campus
                 ]
+            },
+            {
+                type: "ciencias", 
+                resources: [
+                    images.general.campus
+                ]
+            },
+            {
+                type: "ESE", 
+                resources: [
+                    images.general.campus
+                ]
+            },
+            {
+                type: "reloj", 
+                resources: [
+                    images.general.campus
+                ]
+            },
+            {
+                type: "central", 
+                resources: [
+                    images.general.campus
+                ]
+            },
+            {
+                type: "humanidades", 
+                resources: [
+                    images.general.campus
+                ]
             }
         ]
     },

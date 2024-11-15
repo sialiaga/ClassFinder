@@ -7,6 +7,7 @@ import {
   Text,
   Pressable,
   Switch,
+  TouchableOpacity,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import Icon from "react-native-vector-icons/FontAwesome5"; // Importamos el ícono de FontAwesome
@@ -58,6 +59,10 @@ export default function HomeScreen() {
   // how to set the language options
   const { language, setLanguage } = useLanguage();
   const { translations } = useLanguage();
+  const [visible, setVisible] = React.useState(false);
+
+  const openMenu = () => setVisible(true);
+  const closeMenu = () => setVisible(false);
 
   return (
     <ParallaxScrollView 
@@ -238,14 +243,17 @@ export default function HomeScreen() {
       </View>
 
       <View style={styles.languageContainer}>
-        <Picker
-          selectedValue={language}
-          style={styles.languagePicker}
-          onValueChange={setLanguage}
-        >
-          <Picker.Item label="Español" value="es" />
-          <Picker.Item label="English" value="en" />
-        </Picker>
+        <TouchableOpacity style={styles.languagePickerWrapper}>
+          <Picker
+            selectedValue={language}
+            style={styles.languagePicker}
+            onValueChange={setLanguage}
+            dropdownIconColor="#333" // Cambia el color del ícono de dropdown
+          >
+            <Picker.Item label="Español" value="es" />
+            <Picker.Item label="English" value="en" />
+          </Picker>
+        </TouchableOpacity>
       </View>
 
 
@@ -318,15 +326,31 @@ const styles = StyleSheet.create({
   languageContainer: {
     marginTop: 20,
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "center",
-    gap: 10,
+    alignItems: "center",
   },
+  
+  languagePickerWrapper: {
+    width: 200,
+    height: 50,
+    backgroundColor: "#fff", // Fondo blanco o personalizable
+    borderRadius: 25, 
+    justifyContent: "center",
+    paddingHorizontal: 20,
+    overflow: "hidden", 
+    elevation: 3, 
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+  },
+  
   languagePicker: {
-    width: 150,
-    height: 40,
-    marginLeft: 10,
+    width: "100%", 
+    color: "#333", 
+    backgroundColor: "transparent", 
   },
+  
   languageIcon: {
     width: 30,
     height: 30,
@@ -360,9 +384,8 @@ const styles = StyleSheet.create({
     borderRadius: 20, // Ajusta este valor para hacer los bordes más redondeados
   },
 
-  icon: {
-    marginLeft: 10, // Separar el ícono del texto
-  },
+  icon: {},
+  
   listContent: {
     flexGrow: 1,
   },

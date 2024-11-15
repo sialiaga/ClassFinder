@@ -3,8 +3,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList, useWindowDimensions, Pressable } from "react-native";
 import { useGlobalSearchParams, Link } from "expo-router";
 import Fuse from "fuse.js";
-import Icon from "react-native-vector-icons/FontAwesome";
-import { FontAwesome } from '@expo/vector-icons';
+import Icon from "react-native-vector-icons/FontAwesome5";
 
 import { speakText } from "../../utils/TextToSpeech";
 import { playSound } from "../../utils/playSound";
@@ -29,20 +28,37 @@ export default function SearchScreen() {
   const { translations } = useLanguage();
 
   useEffect(() => {
-    const options = {
-      keys: ["id"],
-      includeScore: true
+    const filterSingleCharacter = (char: string) => {
+      return Object.values(classrooms).filter((classroom) =>
+        classroom.build.toLowerCase().startsWith(char.toLowerCase())
+      );
     };
-
-    const fuse = new Fuse(Object.values(classrooms), options);
-
+  
+    const filterMultipleCharacters = (text: string) => {
+      const options = {
+        keys: [
+          "id",
+          "build",
+          "floor",
+          "number",
+        ],
+        includeScore: true,
+        threshold: 0.4
+      };
+  
+      const fuse = new Fuse(Object.values(classrooms), options);
+      const result = fuse.search(text);
+      return result.map(({ item }) => item);
+    };
+  
     if (searchText.trim() === "") {
       setFilteredItems(Object.values(classrooms));
+    } else if (searchText.trim().length === 1) {
+      setFilteredItems(filterSingleCharacter(searchText.trim()));
     } else {
-      const result = fuse.search(searchText);
-      setFilteredItems(result.map(({ item }) => item));
+      setFilteredItems(filterMultipleCharacters(searchText.trim()));
     }
-  }, [searchText]); // Dependencia en searchText
+  }, [searchText, classrooms]); // Dependencias
 
   useEffect(() => {
     if (query !== undefined) {
@@ -104,18 +120,18 @@ export default function SearchScreen() {
                   <Icon
                     name={
                       item.type === ClassroomTypes.WC
-                        ? "bath"
+                        ? "restroom"
                         : item.type === ClassroomTypes.CLASS
-                          ? "book"
+                          ? "chalkboard-teacher"
                           : item.type === ClassroomTypes.OTHER
-                            ? "question-circle"
+                            ? "info"
                             : item.type === ClassroomTypes.CAFE
                               ? "coffee"
                               : "question-circle" // Ícono predeterminado
                     }
                     size={20} // Ajusta el tamaño según sea necesario
                     color="#FFFFFF"
-                    style={{ marginLeft: 8 }} // Espaciado entre texto e ícono
+                    style={{}} // Espaciado entre texto e ícono
                   />
                   <Text style={styles.title}>{`${styleTitleLayout(item.id)}`}</Text>
                 </View>

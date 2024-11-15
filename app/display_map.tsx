@@ -8,7 +8,7 @@ import { Classroom } from "@/classrooms/typesClassrooms";
 import { capitalize } from '@/utils/capitalize';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const { width, height } = Dimensions.get('window'); // Obtener el ancho de la pantalla
+const { width, height } = Dimensions.get('window');
 
 export default function displayMap() {
   const { id } = useGlobalSearchParams<{ id: string }>();
@@ -28,12 +28,13 @@ export default function displayMap() {
   }, [id]);
 
   if (id === undefined || !(id in classrooms)) {
-    return <Redirect href="/default" />;
+    return <Redirect href={{ pathname: '/default' }} />;
   }
+  
 
   const handleResourceTypeChange = (type: string) => {
     setSelectedResourceType(type);
-    setCurrentIndex(0); // Reiniciar el índice cuando cambia el tipo de recurso
+    setCurrentIndex(0); 
   };
 
   const selectedResources = classroom?.resources.find(res => res.type === selectedResourceType)?.resources || [];
@@ -139,15 +140,20 @@ const styles = StyleSheet.create({
   },
   resourceTypeButtons: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     marginTop: 20,
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    paddingHorizontal: 10, 
   },
   resourceType: {
     fontSize: 18,
-    marginHorizontal: 10,
+    margin: 5, // Espaciado entre botones
     paddingVertical: 5,
     paddingHorizontal: 15,
     borderRadius: 20,
     backgroundColor: '#e0e0e0',
+    textAlign: 'center', // Centra el texto dentro de cada botón
   },
   selectedResourceType: {
     backgroundColor: '#CE0615',
