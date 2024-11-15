@@ -97,7 +97,7 @@ export default function SearchScreen() {
         <Icon name="chevron-right" size={FONT_SIZE} color="#CE0615" style={styles.icon} />
         <Text style={styles.instructionText}>{translations['name_classroom']}</Text>
         <a
-          onClick={() => speakText(`${"Introduce nombre de sala."} ${itemsToString(filteredItems)}`)}
+          onClick={() => speakText(`${translations["search_speak"]} ${itemsToString(filteredItems)}`)}
           style={styles.iconContainer}
         >
           <Icon name="volume-up" size={40} color="#000000" />

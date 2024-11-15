@@ -7,6 +7,9 @@
     "welcome": "¡Bienvenido!",
     "search_building": "Buscar por edificio",
 
+    "welcome_speak": "Bienvenido. Buscar por edificio. Humanidades. Ciencias. Biblioteca. Ingenieria. Reloj. Mecano. ESE. Central. Campus",
+    "search_speak": "Introduce tu destino.",
+
     "name_classroom": "Ingresa tu destino",
     "building": "Edificio",
     "floor": "piso",

@@ -80,7 +80,7 @@ export default function HomeScreen() {
       <ThemedText style={styles.titleText} type="title">{translations['welcome']}</ThemedText>
       <HelloWave />
       <a 
-        onClick={() => speakText("Bienvenido. Buscar por edificio. Humanidades. Ciencias. Biblioteca. Ingenieria. Reloj. Mecano. ESE. Central. Mapa de Campus")}
+        onClick={() => speakText(translations["welcome_speak"])}
         style={styles.iconContainer}
       >
         <Icon name="volume-up" size={40} color="#ffffff"/>
@@ -236,7 +236,7 @@ export default function HomeScreen() {
           <Link href={{ pathname: `/display_map`, params: { id: "campus" } }} asChild>
             <View style={styles.buttonWrapper}>
             <Icon name="map" size={ICON_SIZE} color="#CE0615" style={styles.icon} />               
-            <Text style={styles.buttonText}>Mapa de Campus</Text>
+            <Text style={styles.buttonText}>Campus</Text>
             </View>
           </Link>
         </Pressable>

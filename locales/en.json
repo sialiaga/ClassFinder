@@ -6,6 +6,9 @@
   
     "welcome": "Welcome!",
     "search_building": "Search by building",
+
+    "welcome_speak": "Welcome. Search by building. Humanidades. Ciencias. Biblioteca. Ingenieria. Reloj. Mecano. ESE. Central. Campus",
+    "search_speak": "Enter your destination.",
     
     "name_classroom": "Enter your destination",
     "building": "Building",
