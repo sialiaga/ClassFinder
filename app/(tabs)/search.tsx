@@ -20,8 +20,8 @@ const itemsToString = (items: Classroom[]): string => {
 
 const { width, height } = Dimensions.get('window');
 
-const ICON_SIZE = Math.min(width * 0.1, 50);
-const FONT_SIZE = Math.min(width * 0.05, 30);
+const ICON_SIZE = Math.min(width * 0.1, 30);
+const FONT_SIZE = Math.min(width * 0.05, 20);
 const FONT_BACK_SIZE = Math.min(width * 0.05, 20);
 const FONT_TITLE = Math.min(width * 0.05, 50);
 
@@ -50,7 +50,7 @@ export default function SearchScreen() {
           "number",
         ],
         includeScore: true,
-        threshold: 0.4
+        threshold: 0.1
       };
   
       const fuse = new Fuse(Object.values(classrooms), options);
@@ -136,7 +136,7 @@ export default function SearchScreen() {
                               ? "coffee"
                               : "question-circle" // Ícono predeterminado
                     }
-                    size={20} // Ajusta el tamaño según sea necesario
+                    size={ICON_SIZE} // Ajusta el tamaño según sea necesario
                     color="#FFFFFF"
                     style={{}} // Espaciado entre texto e ícono
                   />
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
   },
   title: {
-    fontSize: 22,
+    fontSize: FONT_TITLE,
     fontWeight: 'bold',
     color: '#fff',
   },
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
   },
   infoText: {
-    fontSize: 16,
+    fontSize: FONT_SIZE,
     color: '#000',
   },
   link: {
