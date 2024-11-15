@@ -3,15 +3,14 @@ import {
   Image,
   StyleSheet,
   View,
-  Button,
   Text,
   Pressable,
-  Switch,
   TouchableOpacity,
+  Dimensions
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import Icon from "react-native-vector-icons/FontAwesome5"; // Importamos el ícono de FontAwesome
-import Animated, { useSharedValue, useAnimatedStyle, withTiming, withDelay, withSpring } from "react-native-reanimated";
+import Animated, { useSharedValue, useAnimatedStyle, withTiming, withDelay } from "react-native-reanimated";
 
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
@@ -22,6 +21,8 @@ import { Link } from "expo-router";
 import { speakText } from "../../utils/TextToSpeech";
 import { playSound } from "../../utils/playSound";
 import { useLanguage } from "@/contexts/LanguageContext";
+
+const { width, height } = Dimensions.get('window');
 
 
 
@@ -54,15 +55,15 @@ const AnimatedButtonWrapper: React.FC<AnimatedButtonWrapperProps> = ({ children,
   );
 };
 
+const ICON_SIZE = Math.min(width * 0.1, 50);
+const FONT_SIZE = Math.min(width * 0.05, 30);
+const FONT_TITLE = Math.min(width * 0.05, 50);
 
 export default function HomeScreen() {
   // how to set the language options
   const { language, setLanguage } = useLanguage();
   const { translations } = useLanguage();
-  const [visible, setVisible] = React.useState(false);
 
-  const openMenu = () => setVisible(true);
-  const closeMenu = () => setVisible(false);
 
   return (
     <ParallaxScrollView 
@@ -76,7 +77,7 @@ export default function HomeScreen() {
       }
     >
       <ThemedView style={styles.titleContainer}>
-      <ThemedText type="title">{translations['welcome']}</ThemedText>
+      <ThemedText style={styles.titleText} type="title">{translations['welcome']}</ThemedText>
       <HelloWave />
       <a 
         onClick={() => speakText("Bienvenido. Buscar por edificio. Humanidades. Ciencias. Biblioteca. Ingenieria. Reloj. Mecano. ESE. Central. Mapa de Campus")}
@@ -89,7 +90,7 @@ export default function HomeScreen() {
       <View style={styles.sectionContainer}>
         <View style={styles.sectionTitleContainer}>
           
-          <Icon name="chevron-right" size={20} color="#CE0615" style={styles.icon} /> 
+          <Icon name="chevron-right" size={FONT_SIZE} color="#CE0615" style={styles.icon} /> 
 
           <Text style={styles.sectionTitle}>{translations['search_building']}</Text>
           
@@ -104,7 +105,7 @@ export default function HomeScreen() {
               >
                 <Link href="/search?query=h" asChild>
                   <View style={styles.buttonWrapper}>
-                  <Icon name="book" size={40} color="#CE0615" style={styles.icon} /> 
+                  <Icon name="book" size={ICON_SIZE} color="#CE0615" style={styles.icon} /> 
 
                     <Text style={styles.buttonText}>Humanidades</Text>
                   </View>
@@ -120,7 +121,7 @@ export default function HomeScreen() {
               >
                 <Link href="/search?query=c" asChild>
                   <View style={styles.buttonWrapper}>
-                  <Icon name="flask" size={40} color="#CE0615" style={styles.icon} /> 
+                  <Icon name="flask" size={ICON_SIZE} color="#CE0615" style={styles.icon} /> 
                     <Text style={styles.buttonText}>Ciencias</Text>
                   </View>
                 </Link>
@@ -137,7 +138,7 @@ export default function HomeScreen() {
               >
                 <Link href="/search?query=b" asChild>
                   <View style={styles.buttonWrapper}>
-                  <Icon name="place-of-worship" size={40} color="#CE0615" style={styles.icon} /> 
+                  <Icon name="place-of-worship" size={ICON_SIZE} color="#CE0615" style={styles.icon} /> 
                     <Text style={styles.buttonText}>Biblioteca</Text>
                   </View>
                 </Link>
@@ -152,7 +153,7 @@ export default function HomeScreen() {
               >
                 <Link href="/search?query=i" asChild>
                   <View style={styles.buttonWrapper}>
-                  <Icon name="screwdriver" size={40} color="#CE0615" style={styles.icon} /> 
+                  <Icon name="screwdriver" size={ICON_SIZE} color="#CE0615" style={styles.icon} /> 
 
                     <Text style={styles.buttonText}>Ingeniería</Text>
                   </View>
@@ -170,7 +171,7 @@ export default function HomeScreen() {
               >
                 <Link href="/search?query=r" asChild>
                   <View style={styles.buttonWrapper}>
-                  <Icon name="clock" size={40} color="#CE0615" style={styles.icon} /> 
+                  <Icon name="clock" size={ICON_SIZE} color="#CE0615" style={styles.icon} /> 
                     <Text style={styles.buttonText}>Reloj</Text>
                   </View>
                 </Link>
@@ -185,7 +186,7 @@ export default function HomeScreen() {
               >
                 <Link href="/working" asChild>
                   <View style={styles.buttonWrapper}>
-                  <Icon name="dungeon" size={40} color="#CE0615" style={styles.icon} /> 
+                  <Icon name="dungeon" size={ICON_SIZE} color="#CE0615" style={styles.icon} /> 
                     <Text style={styles.buttonText}>Mecano</Text>
                   </View>
                 </Link>
@@ -202,7 +203,7 @@ export default function HomeScreen() {
               >
                 <Link href="/working" asChild>
                   <View style={styles.buttonWrapper}>
-                  <Icon name="school" size={40} color="#CE0615" style={styles.icon} /><Text style={styles.buttonText}>ESE</Text>
+                  <Icon name="school" size={ICON_SIZE} color="#CE0615" style={styles.icon} /><Text style={styles.buttonText}>ESE</Text>
                   </View>
                 </Link>
               </Pressable>
@@ -216,7 +217,7 @@ export default function HomeScreen() {
               >
                 <Link href="/search?query=ce" asChild>
                   <View style={styles.buttonWrapper}>
-                  <Icon name="landmark" size={40} color="#CE0615" style={styles.icon} /><Text style={styles.buttonText}>Central</Text>
+                  <Icon name="landmark" size={ICON_SIZE} color="#CE0615" style={styles.icon} /><Text style={styles.buttonText}>Central</Text>
                   </View>
                 </Link>
               </Pressable>
@@ -234,7 +235,7 @@ export default function HomeScreen() {
               >
           <Link href={{ pathname: `/display_map`, params: { id: "campus" } }} asChild>
             <View style={styles.buttonWrapper}>
-            <Icon name="map" size={40} color="#CE0615" style={styles.icon} />               
+            <Icon name="map" size={ICON_SIZE} color="#CE0615" style={styles.icon} />               
             <Text style={styles.buttonText}>Mapa de Campus</Text>
             </View>
           </Link>
@@ -263,6 +264,9 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
 
+  titleText:{
+    fontSize: FONT_TITLE
+  },
   titleContainer: {
     display: 'flex',
     flexDirection: "row",
@@ -312,7 +316,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: FONT_SIZE,
     marginRight: 10,
   },
   buttonContainer: {
@@ -367,8 +371,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     textAlign: "center", // Center the text horizontally
-    marginTop: 30, // Optional: Add some space between the button and the text
-    fontSize: 18,
+    fontSize: FONT_SIZE,
     backgroundColor: "f4f4f4",
     padding: 5,
     borderRadius: 10,

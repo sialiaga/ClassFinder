@@ -4,8 +4,12 @@ import { Pressable, StyleSheet, View, Image } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { playSound } from '../utils/playSound';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Working() {
+  const { language, setLanguage } = useLanguage();
+  const { translations } = useLanguage();
+  
   return (
     <>
       <Stack.Screen options={{ title: 'Oops!' }} />
@@ -15,11 +19,11 @@ export default function Working() {
             source={require('@/assets/images/working.gif')} // Cambia esta ruta al archivo de imagen que quieres mostrar
             style={styles.image}
           />
-          <ThemedText type="title" style={styles.title}>Estamos Trabajando</ThemedText>
-          <ThemedText style={styles.message}>La pantalla que estás buscando aun no existe, pero estamos trabajando en ella</ThemedText>
+          <ThemedText type="title" style={styles.title}>{translations["work_title"]}</ThemedText>
+          <ThemedText style={styles.message}>{translations["work_desc"]}</ThemedText>
           <Pressable onPress={() => playSound(require('@/assets/sounds/back.mp3'))}>
             <Link href="/" style={styles.link}>
-              <ThemedText type="link" style={styles.linkText}>Ir a la página principal</ThemedText>
+              <ThemedText type="link" style={styles.linkText}>{translations["return_to_start"]}</ThemedText>
             </Link>
           </Pressable>
         </View>

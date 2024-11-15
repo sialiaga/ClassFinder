@@ -1,6 +1,6 @@
 import SearchBar from "../../components/SearchBar";
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, FlatList, useWindowDimensions, Pressable } from "react-native";
+import { View, Text, StyleSheet, FlatList, useWindowDimensions, Pressable, Dimensions } from "react-native";
 import { useGlobalSearchParams, Link } from "expo-router";
 import Fuse from "fuse.js";
 import Icon from "react-native-vector-icons/FontAwesome5";
@@ -17,6 +17,13 @@ import { styleTitleLayout } from '@/utils/styleTitleLayout';
 const itemsToString = (items: Classroom[]): string => {
   return items.filter((item) => item.show === true).map(item => `${item.id}`).join('. ');
 };
+
+const { width, height } = Dimensions.get('window');
+
+const ICON_SIZE = Math.min(width * 0.1, 50);
+const FONT_SIZE = Math.min(width * 0.05, 30);
+const FONT_BACK_SIZE = Math.min(width * 0.05, 20);
+const FONT_TITLE = Math.min(width * 0.05, 50);
 
 export default function SearchScreen() {
   const { query } = useGlobalSearchParams<{ query: string }>();
@@ -79,7 +86,7 @@ export default function SearchScreen() {
         <Pressable onPress={() => playSound(require('@/assets/sounds/back.mp3'))}>
           <Link href="/" asChild>
             <View style={styles.backButtonContent}>
-              <Icon name="chevron-left" size={20} color="#CE0615" style={styles.icon} />
+              <Icon name="chevron-left" size={FONT_SIZE} color="#CE0615" style={styles.icon} />
               <Text style={styles.backText}>{translations['back']}</Text>
             </View>
           </Link>
@@ -87,8 +94,8 @@ export default function SearchScreen() {
       </View>
 
       <View style={styles.instructionContainer}>
-        <Icon name="chevron-right" size={20} color="#CE0615" style={styles.icon} />
-        <Text style={styles.instructionText}>{translations['name_classroom']} 🚪</Text>
+        <Icon name="chevron-right" size={FONT_SIZE} color="#CE0615" style={styles.icon} />
+        <Text style={styles.instructionText}>{translations['name_classroom']}</Text>
         <a
           onClick={() => speakText(`${"Introduce nombre de sala."} ${itemsToString(filteredItems)}`)}
           style={styles.iconContainer}
@@ -169,7 +176,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   backText: {
-    fontSize: 16,
+    fontSize: FONT_BACK_SIZE,
     color: '#CE0615',
     marginLeft: 5, // Ajusta el espacio entre el icono y el texto
   },
@@ -218,7 +225,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   instructionText: {
-    fontSize: 18,
+    fontSize: FONT_SIZE,
     fontWeight: 'bold',
     marginLeft: 10, // Espaciado entre el ícono y el texto
   },

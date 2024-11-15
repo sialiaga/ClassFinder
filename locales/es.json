@@ -7,7 +7,7 @@
     "welcome": "¡Bienvenido!",
     "search_building": "Buscar por edificio",
 
-    "name_classroom": "Introduce nombre de sala",
+    "name_classroom": "Ingresa tu destino",
     "building": "Edificio",
     "floor": "piso",
     "number": "Numero",
@@ -15,6 +15,14 @@
     "next_img": "Siguiente",
     "back_img": "Anterior",
 
-    "route": "Ruta"
+    "route": "Ruta",
+
+    "work_title": "Estamos Trabajando",
+    "work_desc": "La pantalla que estás buscando aun no existe, pero estamos trabajando en ella.",
+
+    "not_found_title": "Página no encontrada",
+    "not_found_desc": "La pantalla que estás buscando no existe o ha sido movida.",
+
+    "return_to_start": "Ir a la página principal"
   }
   
