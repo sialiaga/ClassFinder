@@ -28,7 +28,7 @@ const images = {
     HCAFE: {
         normal1: require('../../assets/images/humanidades/HCAFE/normal1.gif')
     },
-    HWC: {
+    HWC1: {
         M1: require('../../assets/images/humanidades/HWC1/M1.gif'),
         M2: require('../../assets/images/humanidades/HWC1/M2.gif'),
         W1: require('../../assets/images/humanidades/HWC1/W1.gif'),
@@ -192,25 +192,25 @@ export const humanidades: Classrooms = {
             {
                 type: "M1",
                 resources: [
-                    images.HWC.M1
+                    images.HWC1.M1
                 ]
             },
             {
                 type: "M2",
                 resources: [
-                    images.HWC.M2
+                    images.HWC1.M2
                 ]
             },
             {
                 type: "W1",
                 resources: [
-                    images.HWC.W1
+                    images.HWC1.W1
                 ]
             },
             {
                 type: "W2",
                 resources: [
-                    images.HWC.W2
+                    images.HWC1.W2
                 ]
             },
         ]
