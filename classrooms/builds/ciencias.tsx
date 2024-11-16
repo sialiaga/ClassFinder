@@ -60,7 +60,10 @@ export const images = {
     CWC1: {
         M1: require('../../assets/images/ciencias/CWC1/M1.gif'),
         W1: require('../../assets/images/ciencias/CWC1/W1.gif'),
+        M2: require('../../assets/images/ciencias/CWC1/M2.gif'),
+        W2: require('../../assets/images/ciencias/CWC1/W2.gif'),
     },
+
     COFFEE: {
         COFFEE: require('../../assets/images/ciencias/COFFEE/coffee.gif'),
     },
@@ -225,8 +228,20 @@ export const ciencias: Classrooms = {
                 resources: [images.CWC1.M1],
             },
             {
+                type: "M2",
+                resources: [
+                    images.CWC1.M2
+                ]
+            },
+            {
                 type: "W1",
                 resources: [images.CWC1.W1],
+            },
+            {
+                type: "W2",
+                resources: [
+                    images.CWC1.W2
+                ]
             },
         ],
     },
