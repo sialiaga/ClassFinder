@@ -1,6 +1,7 @@
 export const ClassroomTypes = {
     WC: "wc",
     CLASS: "class",
+    LAB: "laboratory",
     OTHER: "other",
     CAFE: "cafe",
 } as const; // 'as const' asegura que los valores sean literales.

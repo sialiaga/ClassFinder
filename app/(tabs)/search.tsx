@@ -191,14 +191,14 @@ export default function SearchScreen() {
           color={showingFavorites ? "#FFF" : "#8B0000"} // Color del ícono dinámico
           style={{ marginRight: 8 }} // Espaciado entre ícono y texto
         />
-        <Text style={showingFavorites ? styles.filterTextActive: styles.filterTextInactive}>
+        <Text style={showingFavorites ? styles.filterTextActive : styles.filterTextInactive}>
           {showingFavorites ? translations["show_all"] : translations["only_fav"]}
         </Text>
       </Pressable>
 
       <FlatList
         data={filteredItems.filter((item) => item.show === true)}
-        keyExtractor={(item) => `${item.build}-${item.number}`}
+        keyExtractor={(item) => item.id} // Usar 'id' como clave única
         numColumns={2}
         extraData={width}
         columnWrapperStyle={styles.row}
@@ -220,9 +220,8 @@ export default function SearchScreen() {
                               ? "coffee"
                               : "question-circle" // Ícono predeterminado
                     }
-                    size={ICON_SIZE} // Ajusta el tamaño según sea necesario
+                    size={ICON_SIZE}
                     color="#FFFFFF"
-                    style={{}} // Espaciado entre texto e ícono
                   />
                   <Text style={styles.title}>{`${styleTitleLayout(item.id)}`}</Text>
                 </View>
@@ -242,7 +241,7 @@ export default function SearchScreen() {
             >
               <FontAwesome
                 name={isFavorite(item.id) ? "heart" : "heart-o"}
-                size={ICON_SIZE*1.2}
+                size={ICON_SIZE * 1.2}
                 color={isFavorite(item.id) ? "#FFF" : "#FFF"}
               />
             </Pressable>
