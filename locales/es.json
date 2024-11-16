@@ -29,6 +29,9 @@
     "not_found_title": "Página no encontrada",
     "not_found_desc": "La pantalla que estás buscando no existe o ha sido movida.",
 
+    "men": "hombre",
+    "women": "mujer",
+
     "return_to_start": "Ir a la página principal"
   }
   

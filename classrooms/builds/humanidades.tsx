@@ -46,7 +46,7 @@ export const humanidades: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [
                     images.H101.normal1
                 ]
@@ -62,7 +62,7 @@ export const humanidades: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [
                     images.H103.normal1
                 ]
@@ -78,7 +78,7 @@ export const humanidades: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [
                     images.H104.normal1
                 ]
@@ -94,7 +94,7 @@ export const humanidades: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [
                     images.H105.normal1
                 ]
@@ -110,7 +110,7 @@ export const humanidades: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [
                     images.H107.normal1
                 ]
@@ -126,7 +126,7 @@ export const humanidades: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [
                     images.H108.normal1
                 ]
@@ -142,7 +142,7 @@ export const humanidades: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [
                     images.H109.normal1
                 ]
@@ -158,7 +158,7 @@ export const humanidades: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [
                     images.H116.normal1
                 ]
@@ -174,7 +174,7 @@ export const humanidades: Classrooms = {
         type: ClassroomTypes.CAFE,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [
                     images.HCAFE.normal1
                 ]

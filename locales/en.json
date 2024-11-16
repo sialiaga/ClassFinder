@@ -29,6 +29,9 @@
     "not_found_title": "Page not found",
     "not_found_desc": "The screen you are looking for does not exist or has been moved.",
 
+    "men": "men",
+    "women": "women",
+
     "return_to_start": "Go to homepage"
   }
   
