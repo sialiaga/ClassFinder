@@ -7,6 +7,7 @@ import { classrooms } from '@/classrooms/classrooms';
 import { Classroom } from "@/classrooms/typesClassrooms";
 import { capitalize } from '@/utils/capitalize';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { styleTitleLayout } from '@/utils/styleTitleLayout';
 
 const { width, height } = Dimensions.get('window');
 
@@ -14,6 +15,8 @@ const ICON_SIZE = Math.min(width * 0.1, 50);
 const FONT_SIZE = Math.min(width * 0.05, 30);
 const FONT_BACK_SIZE = Math.min(width * 0.05, 20);
 const FONT_TITLE = Math.min(width * 0.05, 50);
+
+const campus_id: string = "campus"
 
 export default function displayMap() {
   const { id } = useGlobalSearchParams<{ id: string }>();
@@ -62,27 +65,62 @@ export default function displayMap() {
         <Pressable onPress={() => playSound(require('@/assets/sounds/back.mp3'))}>
           <Link href="/search" asChild>
             <View style={styles.backButtonContent}>
-              <Icon name="chevron-left" size={20} color="#CE0615" style={styles.icon} />
+              <Icon name="chevron-left" size={20} color="#CE0615" style={styles.iconBack} />
               <Text style={styles.backText}>{translations['back']}</Text>
             </View>
           </Link>
         </Pressable>
       </View>
 
-      <Text style={styles.title}>{classroom?.title && classroom.title[language] ? classroom.title[language] : classroom?.id}</Text>
+      {classroom?.id && String(classroom.id) !== "campus" && (
+        <View style={styles.campusButtonContainer}>
+          <Pressable onPress={() => playSound(require('@/assets/sounds/openmap.mp3'))}>
+            <Link
+              href={{ pathname: `/display_map`, params: { id: "campus" } }}
+              asChild
+            >
+              <View style={styles.campusButtonContent}>
+                <Icon
+                  name="map"
+                  size={ICON_SIZE * 0.6}
+                  color="#CE0615"
+                  style={styles.iconCampus}
+                />
+              </View>
+            </Link>
+          </Pressable>
+        </View>
+      )}
+
+
+      <Text style={styles.title}>
+        {classroom?.title && classroom.title[language]
+          ? classroom.title[language]
+          : styleTitleLayout(classroom?.id ?? "")}
+      </Text>
+
+      <Text style={styles.subtitle}>
+        {classroom?.title && classroom.title[language]
+          ? ""
+          : `${translations["building"]} ${capitalize(classroom?.build ?? "")}, ${translations["floor"]} ${classroom?.floor ?? ""}, ${translations["number"]} ${classroom?.number ?? ""}`}
+      </Text>
+
 
 
 
       {classroom && classroom.resources && classroom.resources.length > 1 && (
         <View style={styles.resourceTypeButtons}>
           {classroom.resources.map((resource) => (
-            <TouchableOpacity key={resource.type} onPress={() => handleResourceTypeChange(resource.type)}>
+            <TouchableOpacity key={resource.type} onPress={() => {
+              handleResourceTypeChange(resource.type);
+              playSound(require('@/assets/sounds/click.mp3'))
+            }}>
               <Text style={[styles.resourceType, selectedResourceType === resource.type && styles.selectedResourceType]}>
                 {translations['route']} {capitalize(resource.type
-                                                    .replace("normal", "general ")
-                                                    .replace("alt", "♿ ")
-                                                    .replace("M", `${translations["men"]} `)
-                                                    .replace("W", `${translations["women"]} `))}
+                  .replace("normal", "general ")
+                  .replace("alt", "♿ ")
+                  .replace("M", `${translations["men"]} `)
+                  .replace("W", `${translations["women"]} `))}
               </Text>
             </TouchableOpacity>
           ))}
@@ -99,14 +137,14 @@ export default function displayMap() {
           {selectedResources.length > 1 && (
             <View style={styles.navigationButtons}>
               <TouchableOpacity
-                onPress={previousImage}
+                onPress={() => { playSound(require('@/assets/sounds/turnpage.mp3')); previousImage() }}
                 style={[styles.navButton, currentIndex === 0 && styles.disabledButton]}
                 disabled={currentIndex === 0}
               >
                 <Text style={styles.navButtonText}>{translations['back_img']}</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={nextImage}
+                onPress={() => { playSound(require('@/assets/sounds/turnpage.mp3')); nextImage() }}
                 style={[styles.navButton, currentIndex === selectedResources.length - 1 && styles.disabledButton]}
                 disabled={currentIndex === selectedResources.length - 1}
               >
@@ -124,16 +162,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   title: {
     fontSize: width * 0.075,
     marginTop: 60,
   },
+  subtitle: {
+    fontSize: width * 0.03,
+  },
   backButtonContainer: {
     position: 'absolute',
-    top: 40,
-    left: 20,
+    top: 20,
+    left: 10,
   },
   backButtonContent: {
     flexDirection: 'row',
@@ -142,10 +183,27 @@ const styles = StyleSheet.create({
   backText: {
     fontSize: FONT_BACK_SIZE,
     color: '#CE0615',
-    marginLeft: 5,
+    marginLeft: 10,
   },
-  icon: {
+  campusButtonContainer: {
+    position: 'absolute',
+    top: 20,
+    right: 15,
+  },
+  campusButtonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  campusText: {
+    fontSize: FONT_BACK_SIZE,
+    color: '#CE0615',
+    marginRight: 10,
+  },
+  iconBack: {
     marginRight: 5,
+  },
+  iconCampus: {
+    marginLeft: 5,
   },
   resourceTypeButtons: {
     flexDirection: 'row',
@@ -183,7 +241,6 @@ const styles = StyleSheet.create({
   },
   navigationButtons: {
     flexDirection: 'row',
-    marginTop: 10,
   },
   navButton: {
     marginHorizontal: 10,
