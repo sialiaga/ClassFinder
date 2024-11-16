@@ -29,10 +29,10 @@ const images = {
         normal1: require('../../assets/images/humanidades/HCAFE/normal1.gif')
     },
     HWC: {
-        M1: require('../../assets/images/humanidades/HWC/M1.gif'),
-        M2: require('../../assets/images/humanidades/HWC/M2.gif'),
-        W1: require('../../assets/images/humanidades/HWC/W1.gif'),
-        W2: require('../../assets/images/humanidades/HWC/W2.gif'),
+        M1: require('../../assets/images/humanidades/HWC1/M1.gif'),
+        M2: require('../../assets/images/humanidades/HWC1/M2.gif'),
+        W1: require('../../assets/images/humanidades/HWC1/W1.gif'),
+        W2: require('../../assets/images/humanidades/HWC1/W2.gif'),
     }
 }
 
@@ -181,11 +181,11 @@ export const humanidades: Classrooms = {
             }
         ]
     },
-    HWC: {
-        id: "HWC",
+    HWC1: {
+        id: "HWC1",
         build: "humanidades",
         floor: "1",
-        number: "WC",
+        number: "WC1",
         show: true,
         type: ClassroomTypes.WC,
         resources: [
