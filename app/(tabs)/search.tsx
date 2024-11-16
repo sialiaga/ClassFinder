@@ -239,7 +239,7 @@ export default function SearchScreen() {
                 styles.favoriteButton,
                 isFavorite(item.id) && styles.favoriteButtonActive,
               ]}
-              onPress={() => toggleFavorite(item.id)}
+              onPress={() => {playSound(require('@/assets/sounds/click.mp3'));toggleFavorite(item.id)}}
             >
               <FontAwesome
                 name={isFavorite(item.id) ? "heart" : "heart-o"}
