@@ -185,7 +185,7 @@ export const humanidades: Classrooms = {
         id: "HWC1",
         build: "humanidades",
         floor: "1",
-        number: "WC1",
+        number: "WC-1",
         show: true,
         type: ClassroomTypes.WC,
         resources: [

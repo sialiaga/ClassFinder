@@ -218,7 +218,9 @@ export default function SearchScreen() {
                             ? "info"
                             : item.type === ClassroomTypes.CAFE
                               ? "coffee"
-                              : "question-circle" // Ícono predeterminado
+                              : item.type === ClassroomTypes.LAB
+                                ? "atom"
+                                : "question-circle" // Ícono predeterminado
                     }
                     size={ICON_SIZE}
                     color="#FFFFFF"
