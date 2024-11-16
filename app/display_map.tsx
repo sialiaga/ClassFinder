@@ -17,7 +17,7 @@ const FONT_TITLE = Math.min(width * 0.05, 50);
 
 export default function displayMap() {
   const { id } = useGlobalSearchParams<{ id: string }>();
-  
+
   const [classroom, setClassroom] = useState<Classroom | undefined>(undefined);
   const [selectedResourceType, setSelectedResourceType] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -35,11 +35,11 @@ export default function displayMap() {
   if (id === undefined || !(id in classrooms)) {
     return <Redirect href={{ pathname: '/default' }} />;
   }
-  
+
 
   const handleResourceTypeChange = (type: string) => {
     setSelectedResourceType(type);
-    setCurrentIndex(0); 
+    setCurrentIndex(0);
   };
 
   const selectedResources = classroom?.resources.find(res => res.type === selectedResourceType)?.resources || [];
@@ -78,7 +78,11 @@ export default function displayMap() {
           {classroom.resources.map((resource) => (
             <TouchableOpacity key={resource.type} onPress={() => handleResourceTypeChange(resource.type)}>
               <Text style={[styles.resourceType, selectedResourceType === resource.type && styles.selectedResourceType]}>
-                {translations['route']} "{capitalize(resource.type)}"
+                {translations['route']} {capitalize(resource.type
+                                                    .replace("normal", "general ")
+                                                    .replace("alt", "♿ ")
+                                                    .replace("M", `${translations["men"]} `)
+                                                    .replace("W", `${translations["women"]} `))}
               </Text>
             </TouchableOpacity>
           ))}
@@ -123,7 +127,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: width*0.075,
+    fontSize: width * 0.075,
     marginTop: 60,
   },
   backButtonContainer: {
@@ -147,12 +151,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 20,
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    paddingHorizontal: 10, 
+    marginBottom: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 10,
   },
   resourceType: {
-    fontSize: 18,
+    fontSize: FONT_SIZE * 0.7,
     margin: 5, // Espaciado entre botones
     paddingVertical: 5,
     paddingHorizontal: 15,
@@ -166,7 +171,7 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
-    marginTop:5,
+    marginTop: 20,
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%', // Asegura que el contenedor de la imagen ocupe todo el ancho

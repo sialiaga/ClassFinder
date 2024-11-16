@@ -94,11 +94,11 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [images.misc.ladder, images.I010.normal1],
             },
             {
-                type: "Alt",
+                type: "alt",
                 resources: [images.misc.elevator, images.I010.alt1],
             },
         ],
@@ -112,11 +112,11 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [images.misc.ladder, images.I011.normal1],
             },
             {
-                type: "Alt",
+                type: "alt",
                 resources: [images.misc.elevator, images.I011.alt1],
             },
         ],
@@ -130,11 +130,11 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [images.misc.ladder, images.I013.normal1],
             },
             {
-                type: "Alt",
+                type: "alt",
                 resources: [images.misc.elevator, images.I013.alt1],
             },
         ],
@@ -148,7 +148,7 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [images.I101.normal1],
             },
         ],
@@ -162,7 +162,7 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [images.I103.normal1],
             },
         ],
@@ -176,7 +176,7 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [images.I105.normal1],
             },
         ],
@@ -190,7 +190,7 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [images.I107.normal1],
             },
         ],
@@ -204,11 +204,11 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [images.misc.ladder, images.I201.normal1],
             },
             {
-                type: "Alt",
+                type: "alt",
                 resources: [images.misc.elevator, images.I201.alt1],
             },
         ],
@@ -222,11 +222,11 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [images.misc.ladder, images.I203.normal1],
             },
             {
-                type: "Alt",
+                type: "alt",
                 resources: [images.misc.elevator, images.I203.alt1],
             },
         ],
@@ -240,11 +240,11 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [images.misc.ladder, images.I205.normal1],
             },
             {
-                type: "Alt",
+                type: "alt",
                 resources: [images.misc.elevator, images.I205.alt1],
             },
         ],
@@ -258,11 +258,11 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [images.misc.ladder, images.I207.normal1],
             },
             {
-                type: "Alt",
+                type: "alt",
                 resources: [images.misc.elevator, images.I207.alt1],
             },
         ],
@@ -276,11 +276,11 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [images.misc.ladder, images.I208.normal1],
             },
             {
-                type: "Alt",
+                type: "alt",
                 resources: [images.misc.elevator, images.I208.alt1],
             },
         ],
@@ -294,11 +294,11 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [images.misc.ladder, images.ICOMP1.normal1],
             },
             {
-                type: "Alt",
+                type: "alt",
                 resources: [images.misc.elevator, images.ICOMP1.alt1],
             },
         ],
@@ -312,11 +312,11 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.CLASS,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [images.misc.ladder, images.ICOMP2.normal1],
             },
             {
-                type: "Alt",
+                type: "alt",
                 resources: [images.misc.elevator, images.ICOMP2.alt1],
             },
         ],
@@ -330,7 +330,7 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.LAB,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [images.ILABE.normal1],
             },
         ],
@@ -344,7 +344,7 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.LAB,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [images.ILABO.normal1],
             },
         ],
@@ -358,7 +358,7 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.LAB,
         resources: [
             {
-                type: "Normal",
+                type: "normal",
                 resources: [images.ILABP.normal1],
             },
         ],
@@ -372,19 +372,19 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.WC,
         resources: [
             {
-                type: "NormalM1",
+                type: "normalM1",
                 resources: [images.misc.ladder, images.IWC0.NormalM1],
             },
             {
-                type: "NormalW1",
+                type: "normalW1",
                 resources: [images.misc.ladder, images.IWC0.NormalW1],
             },
             {
-                type: "AltM1",
+                type: "altM1",
                 resources: [images.misc.elevator, images.IWC0.altM1],
             },
             {
-                type: "AltW1",
+                type: "altW1",
                 resources: [images.misc.elevator, images.IWC0.altW1],
             },
         ],
@@ -416,19 +416,19 @@ export const ingenieria: Classrooms = {
         type: ClassroomTypes.WC,
         resources: [
             {
-                type: "NormalM1",
+                type: "normalM1",
                 resources: [images.misc.ladder, images.IWC2.normalM1],
             },
             {
-                type: "NormalW1",
+                type: "normalW1",
                 resources: [images.misc.ladder, images.IWC2.normalW1],
             },
             {
-                type: "AltM1",
+                type: "altM1",
                 resources: [images.misc.elevator, images.IWC2.altM1],
             },
             {
-                type: "AltW1",
+                type: "altW1",
                 resources: [images.misc.elevator, images.IWC2.altW1],
             },
         ],
