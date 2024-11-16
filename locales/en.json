@@ -18,6 +18,9 @@
     "next_img": "Next",
     "back_img": "Previous",
 
+    "only_fav": "Only favorites",
+    "show_all": "Show all locations",
+
     "route": "Route",
 
     "work_title": "We are working",

@@ -192,7 +192,7 @@ export default function SearchScreen() {
           style={{ marginRight: 8 }} // Espaciado entre ícono y texto
         />
         <Text style={showingFavorites ? styles.filterTextActive: styles.filterTextInactive}>
-          {showingFavorites ? "Mostrar Todos" : "Solo Favoritos"}
+          {showingFavorites ? translations["show_all"] : translations["only_fav"]}
         </Text>
       </Pressable>
 
