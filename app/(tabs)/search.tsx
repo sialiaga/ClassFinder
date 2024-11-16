@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList, useWindowDimensions, Pressable, Dimensions } from "react-native";
 import { useGlobalSearchParams, Link } from "expo-router";
 import Fuse from "fuse.js";
-import Icon from "react-native-vector-icons/FontAwesome5";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import FontAwesome from "react-native-vector-icons/FontAwesome"
 
 import { speakText } from "../../utils/TextToSpeech";
 import { playSound } from "../../utils/playSound";
@@ -83,27 +84,27 @@ export default function SearchScreen() {
         classroom.build.toLowerCase().startsWith(char.toLowerCase())
       );
     };
-  
+
     const filterMultipleCharacters = (text: string, itemsToFilter: Classroom[]) => {
       const options = {
         keys: ["id", "build", "floor", "number"],
         includeScore: true,
         threshold: 0.1,
       };
-  
+
       const fuse = new Fuse(itemsToFilter, options); // Se filtra solo el subconjunto (favoritos o todos)
       const result = fuse.search(text);
       return result.map(({ item }) => item);
     };
-  
+
     const applyFilters = () => {
       const allItems = Object.values(classrooms);
-  
+
       // Si el filtro de favoritos está activo, filtrar primero los favoritos
       const itemsToFilter = showingFavorites
         ? allItems.filter((item) => favorites.includes(item.id))
         : allItems;
-  
+
       // Aplicar lógica de búsqueda con Fuse
       if (searchText.trim() === "") {
         setFilteredItems(itemsToFilter);
@@ -113,7 +114,7 @@ export default function SearchScreen() {
         setFilteredItems(filterMultipleCharacters(searchText.trim(), itemsToFilter));
       }
     };
-  
+
     applyFilters();
   }, [searchText, classrooms, favorites, showingFavorites]);
 
@@ -150,27 +151,22 @@ export default function SearchScreen() {
         <Pressable onPress={() => playSound(require('@/assets/sounds/back.mp3'))}>
           <Link href="/" asChild>
             <View style={styles.backButtonContent}>
-              <Icon name="chevron-left" size={FONT_SIZE} color="#CE0615" style={styles.icon} />
+              <FontAwesome5 name="chevron-left" size={FONT_SIZE} color="#CE0615" style={styles.icon} />
               <Text style={styles.backText}>{translations['back']}</Text>
             </View>
           </Link>
         </Pressable>
       </View>
 
-      <Pressable style={styles.filterButton} onPress={toggleFavoritesFilter}>
-        <Text style={styles.filterText}>
-          {showingFavorites ? "Mostrar Todos" : "Mostrar Favoritos"}
-        </Text>
-      </Pressable>
 
       <View style={styles.instructionContainer}>
-        <Icon name="chevron-right" size={FONT_SIZE} color="#CE0615" style={styles.icon} />
+        <FontAwesome5 name="chevron-right" size={FONT_SIZE} color="#CE0615" style={styles.icon} />
         <Text style={styles.instructionText}>{translations['name_classroom']}</Text>
         <a
           onClick={() => speakText(`${translations["search_speak"]} ${itemsToString(filteredItems)}`)}
           style={styles.iconContainer}
         >
-          <Icon name="volume-up" size={40} color="#000000" />
+          <FontAwesome5 name="volume-up" size={40} color="#000000" />
         </a>
       </View>
 
@@ -181,6 +177,24 @@ export default function SearchScreen() {
           onSubmit={() => { }}
         />
       </View>
+
+      <Pressable
+        style={[
+          styles.filterButton,
+          showingFavorites ? styles.filterButtonActive : styles.filterButtonInactive,
+        ]}
+        onPress={toggleFavoritesFilter}
+      >
+        <FontAwesome
+          name={showingFavorites ? "star-o" : "star"} // Ícono diferente según el estado
+          size={ICON_SIZE} // Ajusta el tamaño según tus necesidades
+          color={showingFavorites ? "#FFF" : "#8B0000"} // Color del ícono dinámico
+          style={{ marginRight: 8 }} // Espaciado entre ícono y texto
+        />
+        <Text style={showingFavorites ? styles.filterTextActive: styles.filterTextInactive}>
+          {showingFavorites ? "Mostrar Todos" : "Solo Favoritos"}
+        </Text>
+      </Pressable>
 
       <FlatList
         data={filteredItems.filter((item) => item.show === true)}
@@ -194,7 +208,7 @@ export default function SearchScreen() {
             <Link href={{ pathname: `/display_map`, params: { id: item.id } }} style={styles.link}>
               <View style={[styles.buttonContainer, { width: getItemWidth() }]}>
                 <View style={styles.titleContainer}>
-                  <Icon
+                  <FontAwesome5
                     name={
                       item.type === ClassroomTypes.WC
                         ? "restroom"
@@ -226,10 +240,10 @@ export default function SearchScreen() {
               ]}
               onPress={() => toggleFavorite(item.id)}
             >
-              <Icon
-                name={isFavorite(item.id) ? "heart" : "heart"}
-                size={ICON_SIZE * 0.8}
-                color={isFavorite(item.id) ? "#CE0615" : "#888"}
+              <FontAwesome
+                name={isFavorite(item.id) ? "heart" : "heart-o"}
+                size={ICON_SIZE*1.2}
+                color={isFavorite(item.id) ? "#FFF" : "#FFF"}
               />
             </Pressable>
           </Pressable>
@@ -248,24 +262,36 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 10,
     right: 10,
-    backgroundColor: "#FFF",
     borderRadius: 20,
     padding: 5,
   },
   favoriteButtonActive: {
-    backgroundColor: "#FFDADA", // Fondo rojo claro cuando está activo
   },
   filterButton: {
-    marginTop: 10,
+    flexDirection: "row", // Alinea ícono y texto horizontalmente
+    alignItems: "center", // Centra verticalmente
+    justifyContent: "center",
     padding: 10,
-    backgroundColor: "#CE0615",
-    borderRadius: 5,
-    alignItems: "center",
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    marginBottom: 10,
   },
-  filterText: {
-    color: "#FFF",
-    fontWeight: "bold",
+  filterButtonActive: {
+    backgroundColor: "#8B0000", // Color de fondo para estado activo
+    borderColor: "#8B0000", // Coincide con el color del botón activo
+  },
+  filterButtonInactive: {
+    backgroundColor: "#F5F5F5", // Fondo neutro para inactivo
+    borderColor: "#ccc", // Borde neutro
+  },
+  filterTextActive: {
     fontSize: FONT_SIZE,
+    color: "#FFF", // Color del texto
+  },
+  filterTextInactive: {
+    fontSize: FONT_SIZE,
+    color: "#8B0000", // Color del texto
   },
   emptyText: {
     textAlign: "center",
