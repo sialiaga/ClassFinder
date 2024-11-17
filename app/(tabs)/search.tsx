@@ -183,7 +183,7 @@ export default function SearchScreen() {
           styles.filterButton,
           showingFavorites ? styles.filterButtonActive : styles.filterButtonInactive,
         ]}
-        onPress={toggleFavoritesFilter}
+        onPress={() => {toggleFavoritesFilter(); playSound(require('@/assets/sounds/click.mp3'))}}
       >
         <FontAwesome
           name={showingFavorites ? "star-o" : "star"} // Ícono diferente según el estado
