@@ -215,7 +215,7 @@ export default function HomeScreen() {
               style={[styles.button, { backgroundColor: "#f4f4f4", borderWidth: 1, borderColor: "#bdbebf" }]} 
               onPress={() => playSound(require('@/assets/sounds/central.mp3'))} 
               >
-                <Link href="/search?query=ce" asChild>
+                <Link href="/working" asChild>
                   <View style={styles.buttonWrapper}>
                   <Icon name="landmark" size={ICON_SIZE} color="#CE0615" style={styles.icon} /><Text style={styles.buttonText}>Central</Text>
                   </View>
