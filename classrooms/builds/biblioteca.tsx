@@ -47,28 +47,10 @@ export const images = {
 
 export const biblioteca: Classrooms = {
 
-// },
-// H011: {
-//     id: "H011",
-//     build: "humanidades",
-//     floor: "0",
-//     number: "11",
-//     show: true,
-//     type: ClassroomTypes.CLASS,
-//     resources: [
-//         {
-//             type: "normal",
-//             resources: [
-//                 images.misc.ladder2, images.H011.normal1
-//             ]
-//         }
-//     ]
-// },
-
     B20: {
         id: "B20",
         build: "biblioteca",
-        floor: "0",
+        floor: "2",
         number: "20",
         show: true,
         type: ClassroomTypes.CLASS,
@@ -84,7 +66,7 @@ export const biblioteca: Classrooms = {
     B21: {
         id: "B21",
         build: "biblioteca",
-        floor: "0",
+        floor: "2",
         number: "21",
         show: true,
         type: ClassroomTypes.CLASS,
@@ -100,7 +82,7 @@ export const biblioteca: Classrooms = {
     B22: {
         id: "B22",
         build: "biblioteca",
-        floor: "0",
+        floor: "2",
         number: "22",
         show: true,
         type: ClassroomTypes.CLASS,
@@ -116,7 +98,7 @@ export const biblioteca: Classrooms = {
     B24: {
         id: "B24",
         build: "biblioteca",
-        floor: "0",
+        floor: "2",
         number: "24",
         show: true,
         type: ClassroomTypes.CLASS,
@@ -132,7 +114,7 @@ export const biblioteca: Classrooms = {
     B25: {
         id: "B25",
         build: "biblioteca",
-        floor: "0",
+        floor: "2",
         number: "25",
         show: true,
         type: ClassroomTypes.CLASS,
@@ -148,7 +130,7 @@ export const biblioteca: Classrooms = {
     B30: {
         id: "B30",
         build: "biblioteca",
-        floor: "0",
+        floor: "3",
         number: "30",
         show: true,
         type: ClassroomTypes.CLASS,
@@ -164,7 +146,7 @@ export const biblioteca: Classrooms = {
     B31: {
         id: "B31",
         build: "biblioteca",
-        floor: "0",
+        floor: "3",
         number: "31",
         show: true,
         type: ClassroomTypes.CLASS,
@@ -180,7 +162,7 @@ export const biblioteca: Classrooms = {
     B32: {
         id: "B32",
         build: "biblioteca",
-        floor: "0",
+        floor: "3",
         number: "32",
         show: true,
         type: ClassroomTypes.CLASS,
@@ -196,7 +178,7 @@ export const biblioteca: Classrooms = {
     B33: {
         id: "B33",
         build: "biblioteca",
-        floor: "0",
+        floor: "3",
         number: "33",
         show: true,
         type: ClassroomTypes.CLASS,
@@ -212,7 +194,7 @@ export const biblioteca: Classrooms = {
     B34: {
         id: "B34",
         build: "biblioteca",
-        floor: "0",
+        floor: "3",
         number: "34",
         show: true,
         type: ClassroomTypes.CLASS,
@@ -228,7 +210,7 @@ export const biblioteca: Classrooms = {
     B35: {
         id: "B35",
         build: "biblioteca",
-        floor: "0",
+        floor: "3",
         number: "35",
         show: true,
         type: ClassroomTypes.CLASS,
