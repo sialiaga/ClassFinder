@@ -1,29 +1,7 @@
 import { Classrooms, ClassroomTypes } from "../typesClassrooms";
+import { misc } from "./misc";
 
-// const images = {
-//     C105: {
-//         normal1: require('../../assets/images/ciencias/C105/normal1.gif')
-//     }
-// }
 
-// export const ciencias: Classrooms = {
-//     C105: { 
-//         id: "C105", 
-//         build: "ciencias", 
-//         floor: "1", 
-//         number: "05",
-//         show: true, 
-//         type: ClassroomTypes.CLASS,
-//         resources: [
-//             {
-//                 type: "Normal", 
-//                 resources: [
-//                     images.C105.normal1
-//                 ]
-//             }
-//         ]
-//     },
-// }
 
 export const images = {
     C101: {
@@ -54,13 +32,46 @@ export const images = {
         normal1: require("../../assets/images/ciencias/C120/normal1.gif"),
     },
 
+    //AHORA SALAS: C012-C014, C017-C019 Y C025
+
+    C012: {
+        normal1: require("../../assets/images/ciencias/C012/normal1.gif"),
+    },
+    C013: {
+        normal1: require("../../assets/images/ciencias/C013/normal1.gif"),
+    },
+    C014: {
+        normal1: require("../../assets/images/ciencias/C014/normal1.gif"),
+    },
+    C017: {
+        normal1: require("../../assets/images/ciencias/C017/normal1.gif"),
+    },
+    C018: {
+        normal1: require("../../assets/images/ciencias/C018/normal1.gif"),
+    },
+    C019: {
+        normal1: require("../../assets/images/ciencias/C019/normal1.gif"),
+    },
+    C025: {
+        normal1: require("../../assets/images/ciencias/C025/normal1.gif"),
+    },
+
+
     CWC1: {
         M1: require('../../assets/images/ciencias/CWC1/M1.gif'),
         W1: require('../../assets/images/ciencias/CWC1/W1.gif'),
         M2: require('../../assets/images/ciencias/CWC1/M2.gif'),
         W2: require('../../assets/images/ciencias/CWC1/W2.gif'),
     },
-
+    CWC0: {
+        M1: require('../../assets/images/ciencias/CWC0/M1.gif'),
+        W1: require('../../assets/images/ciencias/CWC0/W1.gif'),
+        M2: require('../../assets/images/ciencias/CWC0/M2.gif'),
+        W2: require('../../assets/images/ciencias/CWC0/W2.gif'),
+    },
+    misc: {
+        ladder: require('../../assets/images/ciencias/misc/ladder.gif'),
+    },
     COFFEE: {
         COFFEE: require('../../assets/images/ciencias/COFFEE/coffee.gif'),
     },
@@ -246,8 +257,162 @@ export const ciencias: Classrooms = {
         ],
     },
 
+    C012: {
+        id: "C012",
+        build: "ciencias",
+        floor: "0",
+        number: "012",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder, images.C012.normal1],
+            },
+        ],
+    },
+
+    C013: {
+        id: "C013",
+        build: "ciencias",
+        floor: "0",
+        number: "013",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder, images.C013.normal1],
+            },
+        ],
+    },
+
+    C014: {
+        id: "C014",
+        build: "ciencias",
+        floor: "0",
+        number: "014",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder, images.C014.normal1],
+            },
+        ],
+    },
+
+    C017: {
+        id: "C017",
+        build: "ciencias",
+        floor: "0",
+        number: "017",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder, images.C017.normal1],
+            },
+        ],
+    },
+
+    C018: {
+        id: "C018",
+        build: "ciencias",
+        floor: "0",
+        number: "018",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder, images.C018.normal1],
+            },
+        ],
+    },
+
+    C019: {
+        id: "C019",
+        build: "ciencias",
+        floor: "0",
+        number: "019",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder, images.C019.normal1],
+            },
+        ],
+    },
+
+    C025: {
+        id: "C025",
+        build: "ciencias",
+        floor: "0",
+        number: "025",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder, images.C025.normal1],
+            },
+        ],
+    },
+
+    CWC0: {
+        id: "CWC0",
+        build: "ciencias",
+        floor: "0",
+        number: "WC-0",
+        show: true,
+        type: ClassroomTypes.WC,
+        resources: [
+            {
+                type: "M1",
+                resources: [images.misc.ladder, images.CWC0.M1],
+            },
+            {
+                type: "M2",
+                resources: [
+                    images.misc.ladder, images.CWC0.M2
+                ]
+            },
+            {
+                type: "W1",
+                resources: [images.misc.ladder, images.CWC0.W1],
+            },
+            {
+                type: "W2",
+                resources: [
+                    images.misc.ladder, images.CWC0.W2
+                ]
+            },
+        ],
+    },
 
 
 
 };
 
+// Ejemplo con ladder:
+// I010: {
+//     id: "I010",
+//     build: "ingenieria",
+//     floor: "0",
+//     number: "10",
+//     show: true,
+//     type: ClassroomTypes.CLASS,
+//     resources: [
+//         {
+//             type: "normal",
+//             resources: [images.misc.ladder, images.I010.normal1],
+//         },
+//         {
+//             type: "alt",
+//             resources: [images.misc.elevator, images.I010.alt1],
+//         },
+//     ],
+// },
