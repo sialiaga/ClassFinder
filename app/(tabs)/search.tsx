@@ -152,7 +152,7 @@ export default function SearchScreen() {
           <Link href="/" asChild>
             <View style={styles.backButtonContent}>
               <FontAwesome5 name="chevron-left" size={FONT_SIZE} color="#CE0615" style={styles.icon} />
-              <Text style={styles.backText}>{translations['back']}</Text>
+              <Text style={styles.backText}>{translations['home']}</Text>
             </View>
           </Link>
         </Pressable>

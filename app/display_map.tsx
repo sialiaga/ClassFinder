@@ -66,7 +66,7 @@ export default function displayMap() {
           <Link href="/search" asChild>
             <View style={styles.backButtonContent}>
               <Icon name="chevron-left" size={20} color="#CE0615" style={styles.iconBack} />
-              <Text style={styles.backText}>{translations['back']}</Text>
+              <Text style={styles.backText}>{translations['search']}</Text>
             </View>
           </Link>
         </Pressable>
@@ -86,6 +86,7 @@ export default function displayMap() {
                   color="#CE0615"
                   style={styles.iconCampus}
                 />
+                <Text style={styles.campusText}>Campus</Text>
               </View>
             </Link>
           </Pressable>
@@ -191,19 +192,19 @@ const styles = StyleSheet.create({
     right: 15,
   },
   campusButtonContent: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
   },
   campusText: {
     fontSize: FONT_BACK_SIZE,
     color: '#CE0615',
-    marginRight: 10,
+    marginRight: 0,
   },
   iconBack: {
     marginRight: 5,
   },
   iconCampus: {
-    marginLeft: 5,
+    marginLeft: 0,
   },
   resourceTypeButtons: {
     flexDirection: 'row',
