@@ -138,7 +138,7 @@ export const biblioteca: Classrooms = {
             {
                 type: "normal",
                 resources: [
-                    images.misc.ladder3, images.B30.normal1
+                    images.misc.ladder1, images.misc.ladder3, images.B30.normal1
                 ]
             }
         ]
