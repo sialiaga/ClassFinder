@@ -154,7 +154,7 @@ export const biblioteca: Classrooms = {
             {
                 type: "normal",
                 resources: [
-                    images.misc.ladder3, images.B31.normal1
+                    images.misc.ladder1, images.misc.ladder3, images.B31.normal1
                 ]
             }
         ]
@@ -170,7 +170,7 @@ export const biblioteca: Classrooms = {
             {
                 type: "normal",
                 resources: [
-                    images.misc.ladder3, images.B32.normal1
+                    images.misc.ladder1, images.misc.ladder3, images.B32.normal1
                 ]
             }
         ]
@@ -186,7 +186,7 @@ export const biblioteca: Classrooms = {
             {
                 type: "normal",
                 resources: [
-                    images.misc.ladder2, images.B33.normal1
+                    images.misc.ladder1, images.misc.ladder2, images.B33.normal1
                 ]
             }
         ]
@@ -202,7 +202,7 @@ export const biblioteca: Classrooms = {
             {
                 type: "normal",
                 resources: [
-                    images.misc.ladder3, images.B34.normal1
+                    images.misc.ladder1, images.misc.ladder3, images.B34.normal1
                 ]
             }
         ]
@@ -218,7 +218,7 @@ export const biblioteca: Classrooms = {
             {
                 type: "normal",
                 resources: [
-                    images.misc.ladder3, images.B35.normal1
+                    images.misc.ladder1,  images.misc.ladder3, images.B35.normal1
                 ]
             }
         ]
