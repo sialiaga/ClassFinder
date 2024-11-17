@@ -396,23 +396,3 @@ export const ciencias: Classrooms = {
 
 
 };
-
-// Ejemplo con ladder:
-// I010: {
-//     id: "I010",
-//     build: "ingenieria",
-//     floor: "0",
-//     number: "10",
-//     show: true,
-//     type: ClassroomTypes.CLASS,
-//     resources: [
-//         {
-//             type: "normal",
-//             resources: [images.misc.ladder, images.I010.normal1],
-//         },
-//         {
-//             type: "alt",
-//             resources: [images.misc.elevator, images.I010.alt1],
-//         },
-//     ],
-// },
