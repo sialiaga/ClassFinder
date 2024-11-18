@@ -31,6 +31,47 @@ export const images = {
     C120: {
         normal1: require("../../assets/images/ciencias/C120/normal1.gif"),
     },
+    C201: {
+        normal1: require("../../assets/images/ciencias/C201/normal1.gif"),
+    },
+    C203: {	
+        normal1: require("../../assets/images/ciencias/C203/normal1.gif"),	
+    },
+    C204: {	
+        normal1: require("../../assets/images/ciencias/C204/normal1.gif"),	
+    },
+    C205: {	
+        normal1: require("../../assets/images/ciencias/C205/normal1.gif"),	
+    },
+    C209: {
+        normal1: require("../../assets/images/ciencias/C209/normal1.gif"),
+    },
+    C213: {	
+        normal1: require("../../assets/images/ciencias/C213/normal1.gif"),	
+    },
+    C214: {	
+        normal1: require("../../assets/images/ciencias/C214/normal1.gif"),	
+    },
+    C215: {	
+        normal1: require("../../assets/images/ciencias/C215/normal1.gif"),	
+    },
+    C217: {	
+        normal1: require("../../assets/images/ciencias/C217/normal1.gif"),	
+    },
+    C218: {	
+        normal1: require("../../assets/images/ciencias/C218/normal1.gif"),	
+    },
+    C219: {	
+        normal1: require("../../assets/images/ciencias/C219/normal1.gif"),	
+    },
+    C220: {	
+        normal1: require("../../assets/images/ciencias/C220/normal1.gif"),	
+    },
+    C221: {	
+        normal1: require("../../assets/images/ciencias/C221/normal1.gif"),	
+    },
+
+
 
     //AHORA SALAS: C012-C014, C017-C019 Y C025
 
@@ -69,8 +110,15 @@ export const images = {
         M2: require('../../assets/images/ciencias/CWC0/M2.gif'),
         W2: require('../../assets/images/ciencias/CWC0/W2.gif'),
     },
+    CWC2: {	
+        M1: require('../../assets/images/ciencias/CWC2/M1.gif'),	
+        W1: require('../../assets/images/ciencias/CWC2/W1.gif'),	
+        M2: require('../../assets/images/ciencias/CWC2/M2.gif'),	
+        W2: require('../../assets/images/ciencias/CWC2/W2.gif'),	
+    },
     misc: {
         ladder: require('../../assets/images/ciencias/misc/ladder.gif'),
+        ladder2: require('../../assets/images/ciencias/misc/ladder2.gif'),
     },
     COFFEE: {
         COFFEE: require('../../assets/images/ciencias/COFFEE/coffee.gif'),
@@ -392,6 +440,220 @@ export const ciencias: Classrooms = {
             },
         ],
     },
+    CWC2: {
+        id: "CWC2",
+        build: "ciencias",
+        floor: "2",
+        number: "WC-2",
+        show: true,
+        type: ClassroomTypes.WC,
+        resources: [
+            {
+                type: "M1",
+                resources: [images.misc.ladder2, images.misc.ladder2, images.CWC2.M1],
+            },
+            {
+                type: "M2",
+                resources: [
+                    images.misc.ladder2, images.CWC2.M2
+                ]
+            },
+            {
+                type: "W1",
+                resources: [images.misc.ladder2, images.CWC2.W1],
+            },
+            {
+                type: "W2",
+                resources: [
+                    images.misc.ladder2, images.CWC2.W2
+                ]
+            },
+        ],
+    },
+
+    C201: {
+        id: "C201",
+        build: "ciencias",
+        floor: "2",
+        number: "201",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder2, images.C201.normal1],
+            },
+        ],
+    },
+    C203: {
+        id: "C203",
+        build: "ciencias",
+        floor: "2",
+        number: "203",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder2, images.C203.normal1],
+            },
+        ],
+    },
+    C204: {
+        id: "C204",
+        build: "ciencias",
+        floor: "2",
+        number: "204",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder2, images.C204.normal1],
+            },
+        ],
+    },
+    C205: {
+        id: "C205",
+        build: "ciencias",
+        floor: "2",
+        number: "205",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder2, images.C205.normal1],
+            },
+        ],
+    },
+    C209: {
+        id: "C209",
+        build: "ciencias",
+        floor: "2",
+        number: "209",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder2, images.C209.normal1],
+            },
+        ],
+    },
+    C213: {
+        id: "C213",
+        build: "ciencias",
+        floor: "2",
+        number: "213",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder2, images.C213.normal1],
+            },
+        ],
+    },
+    C214: {
+        id: "C214",
+        build: "ciencias",
+        floor: "2",
+        number: "214",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder2, images.C214.normal1],
+            },
+        ],
+    },
+    C215: {
+        id: "C215",
+        build: "ciencias",
+        floor: "2",
+        number: "215",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder2, images.C215.normal1],
+            },
+        ],
+    },
+    C217: {
+        id: "C217",
+        build: "ciencias",
+        floor: "2",
+        number: "217",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder2, images.C217.normal1],
+            },
+        ],
+    },
+    C218: {
+        id: "C218",
+        build: "ciencias",
+        floor: "2",
+        number: "218",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder2, images.C218.normal1],
+            },
+        ],
+    },
+    C219: {
+        id: "C219",
+        build: "ciencias",
+        floor: "2",
+        number: "219",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder2, images.C219.normal1],
+            },
+        ],
+    },
+    C220: {
+        id: "C220",
+        build: "ciencias",
+        floor: "2",
+        number: "220",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder2, images.C220.normal1],
+            },
+        ],
+    },
+    C221: {
+        id: "C221",
+        build: "ciencias",
+        floor: "2",
+        number: "221",
+        show: true,
+        type: ClassroomTypes.CLASS,
+        resources: [
+            {
+                type: "Normal",
+                resources: [images.misc.ladder2, images.C221.normal1],
+            },
+        ],
+    },
+    
 
 
 
