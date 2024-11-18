@@ -242,6 +242,7 @@ const styles = StyleSheet.create({
   },
   navigationButtons: {
     flexDirection: 'row',
+    marginTop: 10
   },
   navButton: {
     marginHorizontal: 10,
